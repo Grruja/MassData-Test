@@ -302,6 +302,11 @@ return [
 
         // Sidebar items:
         [
+            'text' => 'Home',
+            'icon' => 'fas fa-solid fa-home',
+            'url' => 'home',
+        ],
+        [
             'text' => 'User Management',
             'icon' => 'fas fa-solid fa-users',
             'submenu' => [
