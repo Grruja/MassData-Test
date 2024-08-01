@@ -7,7 +7,7 @@ Route::view('/', 'welcome');
 Route::middleware('auth')->group(function () {
     Route::view('/home', 'home')->name('home');
 
-    Route::view('/permissions', 'permissions')
+    Route::view('/permissions', 'permissions.index')
         ->middleware('can:user-management')
         ->name('permissions');
 });

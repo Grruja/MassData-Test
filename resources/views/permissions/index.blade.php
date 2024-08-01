@@ -3,5 +3,5 @@
 @section('content_header_title', 'Permissions')
 
 @section('content_body')
-    <p>Welcome!</p>
+    @include('permissions.table')
 @stop
