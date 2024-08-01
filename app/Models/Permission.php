@@ -11,9 +11,9 @@ class Permission extends Model
 
     protected $fillable = ['name'];
 
-    public static function getUserManagementId(): ?int
+    public static function getPermissionId(string $permissionName): ?int
     {
-        $permission = self::firstWhere('name', 'user-management');
+        $permission = self::firstWhere('name', $permissionName);
         return $permission ? $permission->id : null;
     }
 }
