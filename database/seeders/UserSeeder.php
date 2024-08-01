@@ -21,8 +21,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456'),
         ]);
 
-        $permission = Permission::firstWhere('name', 'user-management');
-        $admin->userPermission()->create(['permission_id' => $permission->id]);
+        $admin->userPermission()->create(['permission_id' => Permission::getUserManagementId()]);
 
         $faker = Factory::create();
 
