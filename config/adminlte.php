@@ -317,6 +317,7 @@ return [
                 [
                     'text' => 'Permissions',
                     'url' => 'permissions',
+                    'can' => 'user-management',
                 ],
             ],
         ],
