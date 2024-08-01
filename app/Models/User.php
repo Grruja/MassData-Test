@@ -46,14 +46,14 @@ class User extends Authenticatable
         ];
     }
 
-    public function userPermission(): HasMany
+    public function userPermissions(): HasMany
     {
         return $this->hasMany(UserPermission::class);
     }
 
     public function hasPermission(string $permissionName): bool
     {
-        return $this->userPermission()
+        return $this->userPermissions()
             ->where('permission_id', Permission::getPermissionId($permissionName))
             ->exists();
     }
