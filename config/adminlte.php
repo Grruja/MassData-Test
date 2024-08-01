@@ -316,7 +316,7 @@ return [
                 ],
                 [
                     'text' => 'Permissions',
-                    'url' => '#',
+                    'url' => 'permissions',
                 ],
             ],
         ],
