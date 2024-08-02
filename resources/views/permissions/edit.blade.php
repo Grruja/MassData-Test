@@ -12,7 +12,7 @@
             <legend class="text-lg mb-4">Edit Permission</legend>
             <x-adminlte-input name="name" placeholder="permission name" value="{{ $permission->name }}" required>
                 <x-slot name="appendSlot">
-                    <x-adminlte-button type="submit" label="Edit" theme="primary" />
+                    <x-adminlte-button type="submit" label="Update" theme="primary" />
                 </x-slot>
             </x-adminlte-input>
         </form>
