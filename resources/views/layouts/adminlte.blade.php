@@ -23,3 +23,8 @@
 @section('content')
     @yield('content_body')
 @stop
+
+@section('js')
+    <script src="{{ asset('/script.js') }}"></script>
+@stop
+
