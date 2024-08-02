@@ -12,8 +12,9 @@ Route::middleware('auth')->group(function () {
         Route::view('/permissions', 'permissions.index')->name('permissions');
 
         Route::controller(PermissionController::class)->prefix('/permissions')->name('permissions.')->group(function () {
-            Route::get('/permissions/edit/{permission}', 'editPermission')->name('edit');
-            Route::post('/permissions/create', 'createPermission')->name('create');
+            Route::get('/edit/{permission}', 'editPermission')->name('edit');
+            Route::post('/create', 'createPermission')->name('create');
+            Route::post('/update/{permission}', 'updatePermission')->name('update');
         });
 
     });

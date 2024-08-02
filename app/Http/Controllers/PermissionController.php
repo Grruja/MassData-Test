@@ -19,4 +19,10 @@ class PermissionController extends Controller
     {
         return view('permissions.edit', compact('permission'));
     }
+
+    public function updatePermission(Permission $permission, CreatePermissionRequest $request): RedirectResponse
+    {
+        $permission->update(['name' => $request->get('name')]);
+        return redirect()->route('permissions');
+    }
 }
