@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
         // Users
         Route::controller(UserController::class)->prefix('/users')->name('users.')->group(function () {
             Route::get('/', 'allUsersList')->name('all');
+            Route::get('/search', 'searchUsers')->name('search');
         });
     });
 });

@@ -27,7 +27,6 @@
     ];
 
     foreach ($users as $user) {
-        if ($user->email === 'admin@gmail.com') continue;
         $config['data'][] = [$user->id, $user->name, $user->email,
         '<nobr>'.
             btnEdit($user->id).
@@ -39,11 +38,14 @@
 <h2 class="text-lg mb-4">All Users</h2>
 
 <div class="d-flex align-items-start justify-content-between">
-    <x-adminlte-input name="search" placeholder="search">
-        <x-slot name="appendSlot">
-            <x-adminlte-button theme="outline-primary" icon="fas fa-search"/>
-        </x-slot>
-    </x-adminlte-input>
+    <form action="{{ route('users.search') }}" method="GET">
+        <x-adminlte-input name="search_value" placeholder="search user">
+            <x-slot name="appendSlot">
+                <x-adminlte-button type="submit" theme="outline-primary" icon="fas fa-search"/>
+            </x-slot>
+        </x-adminlte-input>
+    </form>
+
     <a href="{{ route('permissions.give', ['permission' => 1]) }}" class="btn btn-outline-primary">Create New User</a>
 </div>
 
