@@ -24,10 +24,12 @@
     ];
 
     foreach (Permission::all() as $permission) {
+        if ($permission->name === 'user-management') continue;
         $config['data'][] = [$permission->id, $permission->name, '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'];
     }
 @endphp
 
+<h2 class="text-lg mb-4">All Permissions</h2>
 <x-adminlte-datatable id="table1" :heads="$heads">
     @foreach($config['data'] as $row)
         <tr>

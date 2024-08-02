@@ -7,7 +7,7 @@
 
 @section('content_header')
     @hasSection('content_header_title')
-        <h1 class="text-muted">
+        <h1 class="text-muted border-bottom pb-3">
             @yield('content_header_title')
 
             @hasSection('content_header_subtitle')
