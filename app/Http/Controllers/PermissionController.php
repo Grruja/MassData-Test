@@ -25,4 +25,10 @@ class PermissionController extends Controller
         $permission->update(['name' => $request->get('name')]);
         return redirect()->route('permissions');
     }
+
+    public function deletePermission(Permission $permission): RedirectResponse
+    {
+        $permission->delete();
+        return redirect()->back();
+    }
 }

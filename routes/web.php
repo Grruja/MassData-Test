@@ -11,9 +11,9 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('can:user-management')->group(function () {
         Route::view('/permissions', 'permissions.index')->name('permissions');
-
         Route::controller(PermissionController::class)->prefix('/permissions')->name('permissions.')->group(function () {
             Route::get('/edit/{permission}', 'editPermission')->name('edit')->middleware(CheckPermissionParameter::class);
+            Route::get('/delete/{permission}', 'deletePermission')->name('delete')->middleware(CheckPermissionParameter::class);
             Route::post('/create', 'createPermission')->name('create');
             Route::post('/update/{permission}', 'updatePermission')->name('update')->middleware(CheckPermissionParameter::class);
         });

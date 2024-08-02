@@ -13,8 +13,8 @@
                 </a>";
     }
 
-    function btnDelete(): string {
-        return "<a class='btn btn-xs btn-default text-danger mx-1 shadow' title='Delete'>
+    function btnDelete(int $permissionId): string {
+        return "<a href=".route('permissions.delete', ['permission' => $permissionId])." onclick='return confirmDelete()' class='btn btn-xs btn-default text-danger mx-1 shadow' title='Delete'>
                     <i class='fa fa-lg fa-fw fa-trash'></i>
                </a>";
     }
@@ -36,7 +36,7 @@
         $config['data'][] = [$permission->id, $permission->name,
         '<nobr>'.
             btnEdit($permission->id).
-            btnDelete().
+            btnDelete($permission->id).
             btnGive().
         '</nobr>'];
     }
