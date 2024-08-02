@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Repositories\UserRepo;
 use Illuminate\Http\RedirectResponse;
@@ -19,7 +20,7 @@ class UserController extends Controller
 
     public function createUser(CreateUserRequest $request): RedirectResponse
     {
-        $this->userRepo->create($request);
+        $this->userRepo->createUser($request);
         return redirect()->route('users.all')->with('success', 'User created!');
     }
 
@@ -34,10 +35,16 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
+    public function updateUser(User $user, UpdateUserRequest $request): RedirectResponse
+    {
+        $this->userRepo->updateUser($request, $user);
+        return redirect()->route('users.all')->with('success', 'User updated!');
+    }
+
     public function searchUsers(Request $request): View
     {
         $searchValue = $request->get('search_value');
-        $users = $this->userRepo->search($searchValue);
+        $users = $this->userRepo->searchUsers($searchValue);
 
         return view('users.table', compact('users'));
     }

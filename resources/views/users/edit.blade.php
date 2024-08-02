@@ -7,7 +7,7 @@
 
 @section('content_body')
     <div class="bg-white shadow-sm rounded-5 p-4 col-md-6">
-        <form action="{{ route('users.create') }}" method="POST">
+        <form action="{{ route('users.update', ['user' => $user->id]) }}" method="POST">
             @csrf
 
             <legend class="text-lg mb-4">Change credentials to: <span class="text-primary">{{ $user->name }}</span></legend>

@@ -15,7 +15,7 @@ class UserRepo
         $this->userModel = new User();
     }
 
-    public function create(Request $request): void
+    public function createUser(Request $request): void
     {
         $this->userModel->create([
             'name' => $request->get('name'),
@@ -24,7 +24,19 @@ class UserRepo
         ]);
     }
 
-    public function search(string $searchValue): LengthAwarePaginator
+    public function updateUser(Request $request, User $user): void
+    {
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+
+        if ($request->get('password')) {
+            $user->password = Hash::make($request->get('password'));
+        }
+
+        $user->save();
+    }
+
+    public function searchUsers(string $searchValue): LengthAwarePaginator
     {
         return $this->userModel->where('name', 'like', '%'.$searchValue.'%')
                     ->orWhere('email', 'like', '%'.$searchValue.'%')

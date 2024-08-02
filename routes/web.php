@@ -18,6 +18,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/search', 'searchUsers')->name('search');
         Route::get('/edit/{user}', 'editUser')->name('edit')->middleware(PermissionEqualToUsers::class);
         Route::post('/create', 'createUser')->name('create');
+        Route::post('/update/{user}', 'updateUser')->name('update');
     });
 
     Route::middleware('can:user-management')->group(function () {
