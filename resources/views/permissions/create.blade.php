@@ -2,7 +2,7 @@
     <form action="{{ route('permissions.create') }}" method="POST" style="max-width: 350px">
         @csrf
         <legend class="text-lg mb-4">Create New Permission</legend>
-        <x-adminlte-input name="name" placeholder="permission name" required>
+        <x-adminlte-input name="name" placeholder="permission name" required value="{{ old('name') }}">
             <x-slot name="appendSlot">
                 <x-adminlte-button type="submit" label="Create" theme="primary" />
             </x-slot>

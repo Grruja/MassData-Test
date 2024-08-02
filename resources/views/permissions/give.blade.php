@@ -10,7 +10,7 @@
         <form action="{{ route('permissions.grant', ['permission' => $permission->id]) }}" method="POST" style="max-width: 350px">
             @csrf
             <legend class="text-lg mb-4">Give <span class="text-primary">{{ $permission->name }}</span> permission</legend>
-            <x-adminlte-input name="email" placeholder="user email" required>
+            <x-adminlte-input name="email" placeholder="user email" required value="{{ old('email') }}">
                 <x-slot name="appendSlot">
                     <x-adminlte-button type="submit" label="Give" theme="primary" />
                 </x-slot>
