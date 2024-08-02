@@ -12,7 +12,7 @@ class PermissionController extends Controller
     public function createPermission(CreatePermissionRequest $request): RedirectResponse
     {
         Permission::create(['name' => $request->get('name')]);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Permission created successfully.');
     }
 
     public function editPermission(Permission $permission): View
@@ -23,12 +23,12 @@ class PermissionController extends Controller
     public function updatePermission(Permission $permission, CreatePermissionRequest $request): RedirectResponse
     {
         $permission->update(['name' => $request->get('name')]);
-        return redirect()->route('permissions');
+        return redirect()->route('permissions')->with('success', 'Permission updated successfully.');
     }
 
     public function deletePermission(Permission $permission): RedirectResponse
     {
         $permission->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Permission deleted successfully.');
     }
 }
