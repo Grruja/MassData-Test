@@ -10,7 +10,12 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('can:user-management')->group(function () {
         Route::view('/permissions', 'permissions.index')->name('permissions');
-        Route::post('/permissions/create', [PermissionController::class, 'createPermission'])->name('permissions.create');
+
+        Route::controller(PermissionController::class)->prefix('/permissions')->name('permissions.')->group(function () {
+            Route::get('/permissions/edit/{permission}', 'editPermission')->name('edit');
+            Route::post('/permissions/create', 'createPermission')->name('create');
+        });
+
     });
 });
 

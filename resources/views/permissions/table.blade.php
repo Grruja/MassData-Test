@@ -7,15 +7,23 @@
         ['label' => 'Actions', 'no-export' => true, 'width' => 5],
     ];
 
-    $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
-                    <i class="fa fa-lg fa-fw fa-pen"></i>
-                </button>';
-    $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
-                      <i class="fa fa-lg fa-fw fa-trash"></i>
-                  </button>';
-    $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Give">
-                       <i class="fa fa-lg fa-fw fa-user-plus"></i>
-                   </button>';
+    function btnEdit(int $permissionId): string {
+        return "<a href=".route('permissions.edit', ['permission' => $permissionId])." class='btn btn-xs btn-default text-primary mx-1 shadow' title='Edit'>
+                    <i class='fa fa-lg fa-fw fa-pen'></i>
+                </a>";
+    }
+
+    function btnDelete(): string {
+        return "<a class='btn btn-xs btn-default text-danger mx-1 shadow' title='Delete'>
+                    <i class='fa fa-lg fa-fw fa-trash'></i>
+               </a>";
+    }
+
+    function btnGive(): string {
+        return "<a class='btn btn-xs btn-default text-teal mx-1 shadow' title='Give'>
+                    <i class='fa fa-lg fa-fw fa-user-plus'></i>
+                </a>";
+    }
 
     $config = [
         'data' => [],
@@ -25,7 +33,12 @@
 
     foreach (Permission::all() as $permission) {
         if ($permission->name === 'user-management') continue;
-        $config['data'][] = [$permission->id, $permission->name, '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'];
+        $config['data'][] = [$permission->id, $permission->name,
+        '<nobr>'.
+            btnEdit($permission->id).
+            btnDelete().
+            btnGive().
+        '</nobr>'];
     }
 @endphp
 

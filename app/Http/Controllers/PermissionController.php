@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePermissionRequest;
 use App\Models\Permission;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class PermissionController extends Controller
 {
@@ -12,5 +13,10 @@ class PermissionController extends Controller
     {
         Permission::create(['name' => $request->get('name')]);
         return redirect()->back();
+    }
+
+    public function editPermission(Permission $permission): View
+    {
+        return view('permissions.edit', compact('permission'));
     }
 }
