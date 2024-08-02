@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PermissionController;
+use App\Http\Middleware\CheckPermissionParameter;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
@@ -12,9 +13,9 @@ Route::middleware('auth')->group(function () {
         Route::view('/permissions', 'permissions.index')->name('permissions');
 
         Route::controller(PermissionController::class)->prefix('/permissions')->name('permissions.')->group(function () {
-            Route::get('/edit/{permission}', 'editPermission')->name('edit');
+            Route::get('/edit/{permission}', 'editPermission')->name('edit')->middleware(CheckPermissionParameter::class);
             Route::post('/create', 'createPermission')->name('create');
-            Route::post('/update/{permission}', 'updatePermission')->name('update');
+            Route::post('/update/{permission}', 'updatePermission')->name('update')->middleware(CheckPermissionParameter::class);
         });
 
     });
