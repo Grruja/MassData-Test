@@ -8,14 +8,14 @@
         ['label' => 'Actions', 'no-export' => true, 'width' => 5],
     ];
 
-    function btnEdit(int $permissionId): string {
-        return "<a href=".route('permissions.edit', ['permission' => $permissionId])." class='btn btn-xs btn-default text-primary mx-1 shadow' title='Edit'>
+    function btnEdit(int $usersId): string {
+        return "<a href=".route('users.edit', ['user' => $usersId])." class='btn btn-xs btn-default text-primary mx-1 shadow' title='Edit'>
                     <i class='fa fa-lg fa-fw fa-pen'></i>
                 </a>";
     }
 
-    function btnDelete(int $permissionId): string {
-        return "<a href=".route('permissions.delete', ['permission' => $permissionId])." onclick='return confirmDelete()' class='btn btn-xs btn-default text-danger mx-1 shadow' title='Delete'>
+    function btnDelete(int $usersId): string {
+        return "<a href=".route('permissions.delete', ['permission' => $usersId])." onclick='return confirmDelete()' class='btn btn-xs btn-default text-danger mx-1 shadow' title='Delete'>
                     <i class='fa fa-lg fa-fw fa-trash'></i>
                </a>";
     }

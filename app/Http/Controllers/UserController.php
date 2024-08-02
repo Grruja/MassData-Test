@@ -29,6 +29,11 @@ class UserController extends Controller
         return view('users.table', compact('users'));
     }
 
+    public function editUser(User $user): View
+    {
+        return view('users.edit', compact('user'));
+    }
+
     public function searchUsers(Request $request): View
     {
         $searchValue = $request->get('search_value');

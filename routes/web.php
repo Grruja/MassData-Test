@@ -15,6 +15,7 @@ Route::middleware('auth')->group(function () {
         Route::view('/add', 'users.add')->name('add');
         Route::get('/', 'allUsersList')->name('all');
         Route::get('/search', 'searchUsers')->name('search');
+        Route::get('/edit/{user}', 'editUser')->name('edit')->middleware('can:user-management');
         Route::post('/create', 'createUser')->name('create');
     });
 
