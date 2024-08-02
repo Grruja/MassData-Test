@@ -7,7 +7,7 @@
 
 @section('content_body')
     <div class="mt-3">
-        <form action="{{ route('permissions.update', ['permission' => $permission->id]) }}" method="POST" style="max-width: 350px">
+        <form action="{{ route('permissions.grant', ['permission' => $permission->id]) }}" method="POST" style="max-width: 350px">
             @csrf
             <legend class="text-lg mb-4">Give <span class="text-primary">{{ $permission->name }}</span> permission</legend>
             <x-adminlte-input name="email" placeholder="user email" required>

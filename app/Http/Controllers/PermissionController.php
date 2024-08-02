@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePermissionRequest;
+use App\Http\Requests\GrantPermissionRequest;
 use App\Models\Permission;
+use App\Models\User;
+use App\Models\UserPermission;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -29,6 +32,14 @@ class PermissionController extends Controller
     public function givePermission(Permission $permission): View
     {
         return view('permissions.give', compact('permission'));
+    }
+
+    public function grantPermission(Permission $permission, GrantPermissionRequest $request): RedirectResponse
+    {
+        $user = User::firstWhere('email', $request->get('email'));
+        UserPermission::create(['user_id' => $user->id, 'permission_id' => $permission->id,]);
+
+        return redirect()->route('permissions')->with('success', 'Permission granted.');
     }
 
     public function deletePermission(Permission $permission): RedirectResponse
