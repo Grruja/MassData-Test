@@ -19,8 +19,8 @@
                </a>";
     }
 
-    function btnGive(): string {
-        return "<a class='btn btn-xs btn-default text-teal mx-1 shadow' title='Give'>
+    function btnGive(int $permissionId): string {
+        return "<a href=".route('permissions.give', ['permission' => $permissionId])." class='btn btn-xs btn-default text-teal mx-1 shadow' title='Give'>
                     <i class='fa fa-lg fa-fw fa-user-plus'></i>
                 </a>";
     }
@@ -37,7 +37,7 @@
         '<nobr>'.
             btnEdit($permission->id).
             btnDelete($permission->id).
-            btnGive().
+            btnGive($permission->id).
         '</nobr>'];
     }
 @endphp

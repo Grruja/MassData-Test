@@ -26,6 +26,11 @@ class PermissionController extends Controller
         return redirect()->route('permissions')->with('success', 'Permission updated successfully.');
     }
 
+    public function givePermission(Permission $permission): View
+    {
+        return view('permissions.give', compact('permission'));
+    }
+
     public function deletePermission(Permission $permission): RedirectResponse
     {
         $permission->delete();
