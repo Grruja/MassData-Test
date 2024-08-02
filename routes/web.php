@@ -15,8 +15,9 @@ Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->prefix('/users')->name('users.')->group(function () {
         Route::view('/add', 'users.add')->name('add');
         Route::get('/', 'allUsersList')->name('all');
-        Route::get('/search', 'searchUsers')->name('search');
         Route::get('/edit/{user}', 'editUser')->name('edit')->middleware(PermissionEqualToUsers::class);
+        Route::get('/delete/{user}', 'deleteUser')->name('delete')->middleware(PermissionEqualToUsers::class);
+        Route::get('/search', 'searchUsers')->name('search');
         Route::post('/create', 'createUser')->name('create');
         Route::post('/update/{user}', 'updateUser')->name('update');
     });

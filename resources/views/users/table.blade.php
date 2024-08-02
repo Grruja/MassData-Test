@@ -15,7 +15,7 @@
     }
 
     function btnDelete(int $usersId): string {
-        return "<a href=".route('permissions.delete', ['permission' => $usersId])." onclick='return confirmDelete()' class='btn btn-xs btn-default text-danger mx-1 shadow' title='Delete'>
+        return "<a href=".route('users.delete', ['user' => $usersId])." onclick='return confirmDelete()' class='btn btn-xs btn-default text-danger mx-1 shadow' title='Delete'>
                     <i class='fa fa-lg fa-fw fa-trash'></i>
                </a>";
     }

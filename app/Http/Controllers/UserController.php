@@ -41,6 +41,12 @@ class UserController extends Controller
         return redirect()->route('users.all')->with('success', 'User updated!');
     }
 
+    public function deleteUser(User $user): RedirectResponse
+    {
+        $user->delete();
+        return redirect()->route('users.all')->with('success', 'User deleted!');
+    }
+
     public function searchUsers(Request $request): View
     {
         $searchValue = $request->get('search_value');
