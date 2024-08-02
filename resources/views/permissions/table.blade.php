@@ -42,7 +42,10 @@
     }
 @endphp
 
-<h2 class="text-lg mb-4">All Permissions</h2>
+<div class="d-flex justify-content-between mb-4">
+    <h2 class="text-lg">All Permissions</h2>
+    <a href="{{ route('permissions.give', ['permission' => 1]) }}" class="btn btn-outline-primary">Give User Management Permission</a>
+</div>
 <x-adminlte-datatable id="table1" :heads="$heads">
     @foreach($config['data'] as $row)
         <tr>
