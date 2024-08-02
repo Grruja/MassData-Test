@@ -2,11 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Permission;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckPermissionParameter
+class PermissionNotManagement
 {
     /**
      * Handle an incoming request.
@@ -17,7 +18,9 @@ class CheckPermissionParameter
     {
         $permission = $request->route('permission');
 
-        if ($permission->id == 1) return redirect()->back();
+        if ($permission->id == Permission::getPermissionId('user-management')) {
+            abort(403);
+        }
 
         return $next($request);
     }
