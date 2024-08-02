@@ -35,28 +35,34 @@
     }
 @endphp
 
-<h2 class="text-lg mb-4">All Users</h2>
+@extends('layouts.adminlte')
 
-<div class="d-flex align-items-start justify-content-between">
-    <form action="{{ route('users.search') }}" method="GET">
-        <x-adminlte-input name="search_value" placeholder="search user">
-            <x-slot name="appendSlot">
-                <x-adminlte-button type="submit" theme="outline-primary" icon="fas fa-search"/>
-            </x-slot>
-        </x-adminlte-input>
-    </form>
+@section('content_header_title', 'Users')
 
-    <a href="{{ route('permissions.give', ['permission' => 1]) }}" class="btn btn-outline-primary">Create New User</a>
-</div>
+@section('content_body')
+    <h2 class="text-lg mb-4">All Users</h2>
 
-<x-adminlte-datatable id="table1" :heads="$heads">
-    @foreach($config['data'] as $row)
-        <tr>
-            @foreach($row as $cell)
-                <td>{!! $cell !!}</td>
-            @endforeach
-        </tr>
-    @endforeach
-</x-adminlte-datatable>
+    <div class="d-flex align-items-start justify-content-between">
+        <form action="{{ route('users.search') }}" method="GET">
+            <x-adminlte-input name="search_value" placeholder="search user">
+                <x-slot name="appendSlot">
+                    <x-adminlte-button type="submit" theme="outline-primary" icon="fas fa-search"/>
+                </x-slot>
+            </x-adminlte-input>
+        </form>
 
-{{ $users->links() }}
+        <a href="{{ route('users.add') }}" class="btn btn-outline-primary">Create New User</a>
+    </div>
+
+    <x-adminlte-datatable id="table1" :heads="$heads">
+        @foreach($config['data'] as $row)
+            <tr>
+                @foreach($row as $cell)
+                    <td>{!! $cell !!}</td>
+                @endforeach
+            </tr>
+        @endforeach
+    </x-adminlte-datatable>
+
+    {{ $users->links() }}
+@stop

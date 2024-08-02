@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use App\Repositories\UserRepo;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -15,10 +17,16 @@ class UserController extends Controller
         $this->userRepo = new UserRepo();
     }
 
+    public function createUser(CreateUserRequest $request): RedirectResponse
+    {
+        $this->userRepo->create($request);
+        return redirect()->route('users.all')->with('success', 'User created!');
+    }
+
     public function allUsersList(): View
     {
-        $users = User::paginate();
-        return view('users.index', compact('users'));
+        $users = User::orderBy('created_at', 'desc')->paginate();
+        return view('users.table', compact('users'));
     }
 
     public function searchUsers(Request $request): View
@@ -26,6 +34,6 @@ class UserController extends Controller
         $searchValue = $request->get('search_value');
         $users = $this->userRepo->search($searchValue);
 
-        return view('users.index', compact('users'));
+        return view('users.table', compact('users'));
     }
 }
