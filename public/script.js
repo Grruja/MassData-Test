@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     showToast();
-})
+});
 
 function showToast() {
     const toast = document.getElementById('toast');

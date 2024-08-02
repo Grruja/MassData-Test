@@ -7,7 +7,7 @@
 
 @section('content_header')
     @if(session()->has('success'))
-        <div id="toast" class="alert alert-success position-absolute text-center" style="z-index: 2; right: 18px; bottom: 0" role="alert">
+        <div id="toast" class="alert alert-success position-absolute text-center" style="z-index: 99; right: 18px" role="alert">
             {{ session()->get('success') }}
         </div>
     @endif
