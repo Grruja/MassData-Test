@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
@@ -15,5 +15,12 @@ class Permission extends Model
     {
         $permission = self::firstWhere('name', $permissionName);
         return $permission ? $permission->id : null;
+    }
+
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            set: fn (string $value) => strtolower(str_replace(' ', '-', $value)),
+        );
     }
 }
