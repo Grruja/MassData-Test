@@ -12,7 +12,7 @@
             <label for="import_type" class="form-label">Import Type</label>
             <select id="import_type" name="import_type" class="form-control mb-3">
                 @foreach($importTypes as $importType)
-                    <option value="{{ $importType['permission_required'] }}">{{ $importType['label'] }}</option>
+                    <option value="{{ $importType['permission_id'] }}">{{ $importType['label'] }}</option>
                 @endforeach
             </select>
 

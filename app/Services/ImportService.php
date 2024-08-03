@@ -8,13 +8,22 @@ class ImportService
 {
     public function getAvailableImportTypes(): array
     {
+        $availableImportTypes = [];
+
         $userPermissions = Auth::user()->userPermissions()->with('permission')->get();
-        $userPermissionsArray = $userPermissions->pluck('permission.name')->toArray();
+        $userPermissionsArray = $userPermissions->pluck('permission')->toArray();
 
         $importTypes = config('import');
 
-        return array_filter($importTypes, function ($importType) use ($userPermissionsArray) {
-            return in_array($importType['permission_required'], $userPermissionsArray);
-        });
+        foreach ($importTypes as $key => $importType) {
+            foreach ($userPermissionsArray as $userPermission) {
+                if ($importType['permission_required'] === $userPermission['name']) {
+                    $availableImportTypes[$key] = $importType;
+                    $availableImportTypes[$key]['permission_id'] = $userPermission['id'];
+                }
+            }
+        }
+
+        return $availableImportTypes;
     }
 }
