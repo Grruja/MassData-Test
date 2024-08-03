@@ -12,6 +12,7 @@
             <div class="mb-3">
                 <label for="import_type" class="form-label">Import Type</label>
                 <select id="import_type" name="import_type" class="form-control @error('import_type') is-invalid @enderror">
+                    <option value="" disabled selected>Select type...</option>
                     @foreach($importTypes as $key => $importType)
                         <option value="{{ $key }}">{{ $importType['label'] }}</option>
                     @endforeach
@@ -20,7 +21,7 @@
             </div>
 
             <div class="mb-3">
-                <x-adminlte-input-file name="files[]" label="DS Sheet" placeholder="Choose files..." legend="Choose" multiple>
+                <x-adminlte-input-file name="files[]" label="DS Sheet" placeholder="Choose files..." legend="Choose" error-key="files.*" multiple>
                     <x-slot name="prependSlot">
                         <div class="input-group-text text-primary">
                             <i class="fas fa-file-upload"></i>
