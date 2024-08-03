@@ -6,15 +6,18 @@
 
 @section('content_body')
     <div class="bg-white shadow-sm rounded-5 p-4 col-md-6">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('import.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <label for="import_type" class="form-label">Import Type</label>
-            <select id="import_type" name="import_type" class="form-control mb-3">
-                @foreach($importTypes as $importType)
-                    <option value="{{ $importType['permission_id'] }}">{{ $importType['label'] }}</option>
-                @endforeach
-            </select>
+            <div class="mb-3">
+                <label for="import_type" class="form-label">Import Type</label>
+                <select id="import_type" name="import_type" class="form-control @error('import_type') is-invalid @enderror">
+                    @foreach($importTypes as $importType)
+                        <option value="{{ $importType['permission_id'] }}">{{ $importType['label'] }}</option>
+                    @endforeach
+                </select>
+                @error('import_type') <span class="text-danger" style="font-weight: 700; font-size: 13px">{{ $message }}</span> @enderror
+            </div>
 
             <x-adminlte-input-file name="files[]" label="DS Sheet" placeholder="Choose files..." legend="Choose" multiple>
                 <x-slot name="prependSlot">
