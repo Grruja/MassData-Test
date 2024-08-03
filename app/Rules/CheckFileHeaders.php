@@ -23,7 +23,7 @@ class CheckFileHeaders implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (empty($this->expectedHeaders)) $fail();
+        if (empty($this->expectedHeaders)) $fail('');
         $expectedHeadersArray = array_values($this->expectedHeaders);
 
         $filePath = $value->getRealPath();
