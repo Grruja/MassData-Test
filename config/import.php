@@ -27,7 +27,7 @@ return [
         "label" => "Import Clients",
         "permission_required" => "import-clients",
         "files" => [
-            "client_sheet" => [
+            "ds_sheet" => [
                 "label" => "Client Sheet",
                 "headers_to_db" => [
                     'Client Name'      => 'client_name',
@@ -39,6 +39,25 @@ return [
                     'Zip Code'         => 'zip_code',
                     'Country'          => 'country',
                     'Joined Date'      => 'joined_date',
+                ],
+            ],
+        ],
+    ],
+    'products' => [
+        "label" => "Import Products",
+        "permission_required" => "import-products",
+        "files" => [
+            "ds_sheet" => [
+                "label" => "Product Sheet",
+                "headers_to_db" => [
+                    'Product Name'     => 'product_name',
+                    'Product SKU'      => 'product_sku',
+                    'Category'         => 'category',
+                    'Price'            => 'price',
+                    'Stock Quantity'   => 'stock_quantity',
+                    'Supplier'         => 'supplier',
+                    'Date Added'       => 'date_added',
+                    'Description'      => 'description',
                 ],
             ],
         ],
