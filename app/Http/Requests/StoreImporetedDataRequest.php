@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CheckFileHeaders;
 use App\Services\ImportService;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,7 +28,8 @@ class StoreImporetedDataRequest extends FormRequest
 
         return [
             'import_type' => 'required|in:'.implode(',', array_keys($importTypes)),
-            'files' => 'required|array|file|mimes:xlsx,csv'
+            'files' => 'required|array',
+            'files.*' => ['required', 'file', 'mimes:xlsx,csv', new CheckFileHeaders($this->request->get('import_type'))],
         ];
     }
 }
