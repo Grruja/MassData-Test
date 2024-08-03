@@ -14,8 +14,10 @@ class OrderImport implements ToModel
     */
     public function model(array $row)
     {
+        if ($row[0] === 'order_date') return null;
+
         return new Order([
-            'order_date' => $row[0],
+            'order_date' => $this->convertExcelSerialDate($row[0]),
             'channel' => $row[1],
             'sku' => $row[2],
             'item_description' => $row[3],
@@ -26,5 +28,15 @@ class OrderImport implements ToModel
             'shipping_cost' => $row[8],
             'profit' => $row[9],
         ]);
+    }
+
+    protected function convertExcelSerialDate($serialDate)
+    {
+        $baseDate = \DateTime::createFromFormat('Y-m-d', '1900-01-01');
+
+        $days = $serialDate - 2;
+        $date = $baseDate->modify("+$days days");
+
+        return $date->format('Y-m-d');
     }
 }
