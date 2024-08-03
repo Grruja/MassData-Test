@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Permission;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
@@ -17,10 +18,11 @@ class PermissionEqualToUsers
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $isUserManagement = Auth::user()->hasPermission('user-management');
+        $permissionId = Permission::getPermissionId('user-management');
+        $isUserManagement = Auth::user()->hasPermission($permissionId);
 
         $editUserId = $request->route('user')->id;
-        $isEditUserManagement = User::firstWhere('id', $editUserId)->hasPermission('user-management');
+        $isEditUserManagement = User::firstWhere('id', $editUserId)->hasPermission($permissionId);
 
         if (!$isUserManagement && $isEditUserManagement) abort(403);
 

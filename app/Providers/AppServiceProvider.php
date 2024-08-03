@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
@@ -23,7 +24,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('user-management', function (User $user): bool {
-            return $user->hasPermission('user-management');
+            $permissionId = Permission::getPermissionId('user-management');
+            return $user->hasPermission($permissionId);
         });
 
         Paginator::useBootstrapFive();
