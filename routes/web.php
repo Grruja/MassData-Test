@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     // Data Import
     Route::controller(ImportController::class)->prefix('/data-import')->name('import.')->group(function () {
         Route::get('/', 'index')->name('form');
+        Route::post('/store', 'storeImportedData')->name('store');
     });
 });
 
