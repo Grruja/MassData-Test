@@ -26,7 +26,7 @@ class StoreImporetedDataRequest extends FormRequest
         $importTypes = $importService->getAvailableImportTypes();
 
         return [
-            'import_type' => 'required|in:'.implode(',', array_column($importTypes, 'permission_id')),
+            'import_type' => 'required|in:'.implode(',', array_keys($importTypes)),
             'files' => 'required|array|file|mimes:xlsx,csv'
         ];
     }
