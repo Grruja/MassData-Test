@@ -45,4 +45,4 @@ npm run dev
 You can log in to the admin user-management interface with the following credentials:
 
 - **Email:** admin@gmail.com
-- **Password:** 12345678 (all users have this password)
+- **Password:** 123456 (all users have this password)
