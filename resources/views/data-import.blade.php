@@ -12,8 +12,8 @@
             <div class="mb-3">
                 <label for="import_type" class="form-label">Import Type</label>
                 <select id="import_type" name="import_type" class="form-control @error('import_type') is-invalid @enderror">
-                    @foreach($importTypes as $importType)
-                        <option value="{{ $importType['permission_id'] }}">{{ $importType['label'] }}</option>
+                    @foreach($importTypes as $key => $importType)
+                        <option value="{{ $key }}">{{ $importType['label'] }}</option>
                     @endforeach
                 </select>
                 @error('import_type') <span class="text-danger" style="font-weight: 700; font-size: 13px">{{ $message }}</span> @enderror
