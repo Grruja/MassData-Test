@@ -15,4 +15,9 @@ class UserPermission extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function permission(): BelongsTo
+    {
+        return $this->belongsTo(Permission::class);
+    }
 }
