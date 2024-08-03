@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete/{user}', 'deleteUser')->name('delete')->middleware(PermissionEqualToUsers::class);
         Route::get('/search', 'searchUsers')->name('search');
         Route::post('/create', 'createUser')->name('create');
-        Route::post('/update/{user}', 'updateUser')->name('update');
+        Route::post('/update/{user}', 'updateUser')->name('update')->middleware(PermissionEqualToUsers::class);
     });
 
     Route::middleware('can:user-management')->group(function () {
@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
             Route::post('/grant/{permission}', 'grantPermission')->name('grant');
         });
     });
+
+    // Data Import
+    Route::view('/data-import', 'data-import')->name('data-import');
 });
 
 Auth::routes();

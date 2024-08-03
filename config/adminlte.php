@@ -324,7 +324,7 @@ return [
         [
             'text' => 'Data Import',
             'icon' => 'fas fa-solid fa-file-import',
-            'url' => '#',
+            'url' => 'data-import',
         ],
         [
             'text' => 'Imported Data',
