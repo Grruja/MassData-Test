@@ -1,19 +1,15 @@
 ## MassData-Test 📊
 
-After cloning the repository, navigate to the project's root directory and run the following commands:
+After cloning the repository:
+- Create .env in project's root -> copy .env.example file -> paste in .env
+- Navigate to the project's root directory and run the following commands:
 
 ```sh
 composer install
+php artisan key:generate
 npm install
 php artisan migrate
 ```
-
-## Admin User Login 👤
-
-You can log in to the admin user-management interface with the following credentials:
-
-- **Email:** admin@gmail.com
-- **Password:** 12345678 (all users have this password)
 
 ## Required Packages 📦
 
@@ -43,3 +39,10 @@ To run the project locally, execute the following commands:
 php artisan serve
 npm run dev
 ```
+
+## Admin User Login 👤
+
+You can log in to the admin user-management interface with the following credentials:
+
+- **Email:** admin@gmail.com
+- **Password:** 12345678 (all users have this password)
