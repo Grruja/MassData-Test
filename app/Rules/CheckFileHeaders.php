@@ -24,14 +24,17 @@ class CheckFileHeaders implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (empty($this->expectedHeaders)) $fail();
+        $expectedHeadersArray = array_values($this->expectedHeaders);
 
         $filePath = $value->getRealPath();
         $headers = (new HeadingRowImport())->toArray($filePath)[0][0];
 
-        foreach ($this->expectedHeaders as $column) {
-            if (!in_array($column, $headers)) {
-                $fail("Required headers: ".implode(', ', array_keys($this->expectedHeaders)));
-            }
+        if (count($expectedHeadersArray) < count($headers)) {
+            array_splice($headers, count($expectedHeadersArray));
+        }
+
+        if ($expectedHeadersArray !== $headers) {
+            $fail("Required headers: ".implode(', ', array_keys($this->expectedHeaders)));
         }
     }
 }
