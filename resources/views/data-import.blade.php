@@ -19,13 +19,15 @@
                 @error('import_type') <span class="text-danger" style="font-weight: 700; font-size: 13px">{{ $message }}</span> @enderror
             </div>
 
-            <x-adminlte-input-file name="files[]" label="DS Sheet" placeholder="Choose files..." legend="Choose" multiple>
-                <x-slot name="prependSlot">
-                    <div class="input-group-text text-primary">
-                        <i class="fas fa-file-upload"></i>
-                    </div>
-                </x-slot>
-            </x-adminlte-input-file>
+            <div class="mb-3">
+                <x-adminlte-input-file name="files[]" label="DS Sheet" placeholder="Choose files..." legend="Choose" multiple>
+                    <x-slot name="prependSlot">
+                        <div class="input-group-text text-primary">
+                            <i class="fas fa-file-upload"></i>
+                        </div>
+                    </x-slot>
+                </x-adminlte-input-file>
+            </div>
 
             <x-adminlte-button type="submit" label="Import" theme="primary"/>
         </form>
