@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ImportController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\PermissionEqualToUsers;
@@ -36,7 +37,9 @@ Route::middleware('auth')->group(function () {
     });
 
     // Data Import
-    Route::view('/data-import', 'data-import')->name('data-import');
+    Route::controller(ImportController::class)->prefix('/data-import')->name('import.')->group(function () {
+        Route::get('/', 'index')->name('form');
+    });
 });
 
 Auth::routes();

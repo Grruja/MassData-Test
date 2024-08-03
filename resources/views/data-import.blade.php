@@ -1,16 +1,20 @@
+@props(['importTypes'])
+
 @extends('layouts.adminlte')
 
 @section('content_header_title', 'Data Import')
 
 @section('content_body')
     <div class="bg-white shadow-sm rounded-5 p-4 col-md-6">
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <x-adminlte-select name="import_type" label="Import Type">
-                <x-adminlte-options :options="array_map(fn($item) => $item['label'], config('import'))"
-                                    placeholder="Select an option..."/>
-            </x-adminlte-select>
+            <label for="import_type" class="form-label">Import Type</label>
+            <select id="import_type" name="import_type" class="form-control mb-3">
+                @foreach($importTypes as $importType)
+                    <option value="{{ $importType['permission_required'] }}">{{ $importType['label'] }}</option>
+                @endforeach
+            </select>
 
             <x-adminlte-input-file name="files[]" label="DS Sheet" placeholder="Choose files..." legend="Choose" multiple>
                 <x-slot name="prependSlot">
